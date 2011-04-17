@@ -149,10 +149,17 @@ button {  width: auto; overflow: visible; }
  */
 
 body, select, input, textarea {
-  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
-  color: #444;
-  /* Set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */
+  color: #120108;
+	font-family: 'Pacifico', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  text-shadow: none;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: -0.002em;
+  word-spacing: -0.186em;
+  line-height: 1.21;
 }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
@@ -168,8 +175,46 @@ a:hover { color: #036; }
  * Author: 
  */
 
+html {
+	background: transparent url(../img/background.png);
+}
 
 
+#container {
+	width: 900px;
+	height: 900px;
+	margin: auto;
+}
+
+h1 {
+	color: white;
+	text-shadow: 3px 3px 2px #ab0044;
+	text-align: center;
+	font-size: 2em;
+	padding: 1em 0 1.7em 0;
+	font-weight: normal;
+		 -moz-transform: rotate(-12deg);  /* FF3.5+ */
+       -o-transform: rotate(-12deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(-12deg);  /* Saf3.1+, Chrome */
+      -ms-transform: rotate(-12deg);  /* IE9 */
+          transform: rotate(-12deg);  
+             filter: progid:DXImageTransform.Microsoft.Matrix(/* IE6–IE9 */ 
+                     M11=0.9781476007338057, M12=0.20791169081775931, M21=-0.20791169081775931, M22=0.9781476007338057, sizingMethod='auto expand');
+               zoom: 1;
+}
+
+#main {
+	background: rgba(255,255,255,.9);
+     -moz-border-radius: 17px; /* FF1+ */
+  -webkit-border-radius: 17px; /* Saf3-4, iOS 1+, Android 1.5+ */
+          border-radius: 17px; /* Opera 10.5, IE9, Saf5, Chrome, FF4 */
+  /* useful if you don't want a bg color from leaking outside the border: */        
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+	   -moz-box-shadow: 0px 0px 31px #000; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 31px #000; /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 31px #000; /* Opera 10.5, IE9, Chrome 10+ */
+	padding: 1em;
+}
 
 
 
