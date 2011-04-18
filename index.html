@@ -40,8 +40,11 @@
     <header>
 			<h1>ding-ding-dong.me</h1>
     </header>
-    <div id="main" role="main">
-			hello
+    <div id="dropzone">
+        <p>Drop an image here and start playing !
+    </div>
+    <div id="photo">
+	  <canvas id="photo-canvas"></canvas>
     </div>
     <footer>
 
@@ -57,6 +60,7 @@
 
 
   <!-- scripts concatenated and minified via ant build script-->
+  <script src="http://ajax.cdnjs.com/ajax/libs/ocanvas/1.0/ocanvas.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
   <!-- end scripts-->
