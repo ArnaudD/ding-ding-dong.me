@@ -187,7 +187,7 @@ html {
 
 h1 {
 	color: white;
-	text-shadow: 3px 3px 2px #ab0044;
+	text-shadow: 2px 2px 0px rgba(255,255,255,.4);
 	text-align: center;
 	font-size: 2em;
 	padding: 1em 0 1.7em 0;
@@ -201,6 +201,11 @@ h1 {
                      M11=0.9781476007338057, M12=0.20791169081775931, M21=-0.20791169081775931, M22=0.9781476007338057, sizingMethod='auto expand');
                zoom: 1;
 }
+
+#ding1 { color: #97DEFF; text-shadow: 2px 2px 0 #5E8DA3; }
+#ding2 { color: #D9FF97; text-shadow: 2px 2px 0 #8FAD5A; }
+#dong  { color: #FF97FA; text-shadow: 2px 2px 0 #A55CA1; }
+#dotme { color: ; }
 
 #dropzone {
   background: rgba(255,255,255,.05);
