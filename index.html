@@ -47,7 +47,7 @@
 	  <canvas id="photo-canvas"></canvas>
     </div>
     <footer>
-
+        <a href="#todo">about</a>
     </footer>
   </div> <!--! end of #container -->
 
@@ -99,7 +99,7 @@
     }
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.ENDED) // loop emulation
-        event.target.playVideo();
+        // commented while debuging event.target.playVideo();
     }
   </script>
 
