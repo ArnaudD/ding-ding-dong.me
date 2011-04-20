@@ -1,21 +1,29 @@
 
+accessories = [
+  'hair1.png'
+  'hair2.png'
+  'mouth1.png'
+  'glasses1.png'
+  'glasses2.png'
+]
+
+
 class Photo
   constructor: (file) ->
     $('#photo').show()
     @initCanvas file
+    @initAccessories()
 
   initCanvas: (file) ->
     img = document.createElement 'img'
     img.addEventListener 'load', ((e) => 
       width  = (700 - 40)
       height = (width / img.width) * img.height
+
       @canvas = oCanvas.create
         canvas: "#photo-canvas"
       @canvas.width  = width
       @canvas.height = height
-      console.log width
-      console.log height
-      console.log @canvas
       image  = @canvas.display.image
         x: 0
         y: 0
@@ -31,6 +39,27 @@ class Photo
       img.src = e.target.result
     reader.readAsDataURL file
 
+  initAccessories: () ->
+    accessoriesContainer = $('#accessories')
+    accessoriesContainer.show()
+    list = $('<ul></ul>')
+    accessoriesContainer.append list
+
+    for item in accessories
+      li = $('<li><a href="#"><span>add</span><img src="img/accessories/'+item+'" width="70px" /></a></li>')
+      list.append li
+      li.click (e) =>
+        e.preventDefault()
+        @addAccessory $('img', e.currentTarget).attr 'src'
+        false
+
+  addAccessory: (url) ->
+    image  = @canvas.display.image
+      x: 0
+      y: 0
+      image: url
+    @canvas.addChild image
+    image.dragAndDrop()
 
 
 class FileHandler

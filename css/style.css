@@ -227,16 +227,68 @@ h1 {
 }
 
 #photo {
-	display: none;
      -moz-box-shadow: 0px 0px 120px rgba(0,0,0,1); /* FF3.5+ */
   -webkit-box-shadow: 0px 0px 120px rgba(0,0,0,1); /* Saf3.0+, Chrome */
           box-shadow: 0px 0px 120px rgba(0,0,0,1); /* Opera 10.5, IE9, Chrome 10+ */
-	background: rgba(255,255,255,.9);
 	padding: 20px;
 	padding-bottom: 40px;
 	margin: 0 0 2em 0;
 }
 
+#photo ,
+#accessories {
+	display: none;
+	background-image: url(../img/paper_bg.jpg);
+}
+#accessories {
+	margin: 1em 0;
+     -moz-box-shadow: inset 0px 5px 12px rgba(0,0,0,.3); /* FF3.5+ */
+  -webkit-box-shadow: inset 0px 5px 12px rgba(0,0,0,.3); /* Saf3.0+, Chrome */
+          box-shadow: inset 0px 5px 12px rgba(0,0,0,.3); /* Opera 10.5, IE9, Chrome 10+ */
+	padding: 0.5em;
+}
+#accessories ul {
+	margin: 0;
+}
+#accessories li {
+	display: inline-block;
+     -moz-box-shadow: 0px 0px 7px rgba(0,0,0,.3); /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 7px rgba(0,0,0,.3); /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 7px rgba(0,0,0,.3); /* Opera 10.5, IE9, Chrome 10+ */
+	margin-right: 10px;
+	background: white;
+	padding: 3px;
+}
+#accessories li a span,
+#accessories li a {
+	position: relative;
+	display: inline-block;
+	width:  70px;
+	height: 70px;
+	text-align: center;
+	line-height: 70px;
+	overflow: hidden;
+	text-decoration: none;
+}
+#accessories li a span {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+#accessories li a:hover span {
+	display: inline-block;
+	color: white;
+	background: rgba(0,0,0,.5);
+
+}
+#accessories li img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
 
 
 footer {

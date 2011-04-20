@@ -46,6 +46,7 @@
     <div id="photo">
 	  <canvas id="photo-canvas"></canvas>
     </div>
+    <div id="accessories"></div>
     <footer>
         <a href="#todo">about</a>
     </footer>
@@ -64,6 +65,7 @@
   <script src="http://ajax.cdnjs.com/ajax/libs/ocanvas/1.0/ocanvas.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/live.js"></script>
   <!-- end scripts-->
 
   <script>
@@ -98,8 +100,8 @@
       event.target.playVideo();
     }
     function onPlayerStateChange(event) {
-      if (event.data == YT.PlayerState.ENDED) // loop emulation
-        // commented while debuging event.target.playVideo();
+      if (event.data == YT.PlayerState.ENDED)
+        event.target.playVideo(); // loop emulation
     }
   </script>
 
