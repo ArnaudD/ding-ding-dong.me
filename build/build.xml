@@ -812,5 +812,16 @@
         </copy> 
     </target>
 
-    
+    <target name="deploy">
+        <input message="ftp-password:" addproperty="ftp.password">
+            <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+        </input>
+
+        <apply executable="ncftpput" parallel="true">
+            <arg line="-R -u ${ftp.username} -p ${ftp.password} ${ftp.host} ${ftp.rootdir} "/>
+            <fileset dir="${dir.publish}" includes="*"/>
+            <dirset dir="${dir.publish}" includes="*"/>
+        </apply>
+    </target>
+
 </project>
