@@ -460,6 +460,7 @@
         <concat destfile="./${dir.publish}/${dir.js}/libs-${build.number}.js">
             <fileset dir="./${dir.publish}/${dir.js.mylibs}/">
                 <include name="**/*.min.js"/>
+                <exclude name="**/live.min.js"/>
             </fileset>      
         </concat>
     </target>

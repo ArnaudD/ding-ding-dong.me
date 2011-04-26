@@ -62,10 +62,10 @@
 
 
   <!-- scripts concatenated and minified via ant build script-->
-  <script src="http://ajax.cdnjs.com/ajax/libs/ocanvas/1.0/ocanvas.min.js"></script>
+  <script src="js/mylibs/ocanvas-1.0.js"></script>
+  <script src="js/mylibs/live.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
-  <script src="js/live.js"></script>
   <!-- end scripts-->
 
   <script>
@@ -97,7 +97,7 @@
 
     function onPlayerReady(event) {
       event.target.setVolume(100);
-      event.target.playVideo();
+      //event.target.playVideo();
     }
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.ENDED)
