@@ -45,20 +45,22 @@ class Photo
     list = $('<ul></ul>')
     accessoriesContainer.append list
 
-    for item in accessories
-      li = $('<li><a href="#"><span>add</span><img src="img/accessories/'+item+'" width="70px" /></a></li>')
+    for src, index in accessories
+      li = $('<li><a href="#"><span>add</span><img src="img/accessories/'+src+'" width="70px" data-zindex="'+ ((parseInt(index) + 1) * 10)+'" /></a></li>')
       list.append li
       li.click (e) =>
         e.preventDefault()
-        @addAccessory $('img', e.currentTarget).attr 'src'
+        img = $('img', e.currentTarget)
+        @addAccessory (img.attr 'src'), img.data('zindex')
         false
 
-  addAccessory: (url) ->
+  addAccessory: (url, zIndex) ->
     image  = @canvas.display.image
       x: 0
       y: 0
       image: url
     @canvas.addChild image
+    image.zIndex = parseInt zIndex
     image.dragAndDrop()
 
 

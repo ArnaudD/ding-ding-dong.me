@@ -37,25 +37,27 @@
       return reader.readAsDataURL(file);
     };
     Photo.prototype.initAccessories = function() {
-      var accessoriesContainer, item, li, list, _i, _len, _results;
+      var accessoriesContainer, index, li, list, src, _len, _results;
       accessoriesContainer = $('#accessories');
       accessoriesContainer.show();
       list = $('<ul></ul>');
       accessoriesContainer.append(list);
       _results = [];
-      for (_i = 0, _len = accessories.length; _i < _len; _i++) {
-        item = accessories[_i];
-        li = $('<li><a href="#"><span>add</span><img src="img/accessories/' + item + '" width="70px" /></a></li>');
+      for (index = 0, _len = accessories.length; index < _len; index++) {
+        src = accessories[index];
+        li = $('<li><a href="#"><span>add</span><img src="img/accessories/' + src + '" width="70px" data-zindex="' + ((parseInt(index) + 1) * 10) + '" /></a></li>');
         list.append(li);
         _results.push(li.click(__bind(function(e) {
+          var img;
           e.preventDefault();
-          this.addAccessory($('img', e.currentTarget).attr('src'));
+          img = $('img', e.currentTarget);
+          this.addAccessory(img.attr('src'), img.data('zindex'));
           return false;
         }, this)));
       }
       return _results;
     };
-    Photo.prototype.addAccessory = function(url) {
+    Photo.prototype.addAccessory = function(url, zIndex) {
       var image;
       image = this.canvas.display.image({
         x: 0,
@@ -63,6 +65,7 @@
         image: url
       });
       this.canvas.addChild(image);
+      image.zIndex = parseInt(zIndex);
       return image.dragAndDrop();
     };
     return Photo;
