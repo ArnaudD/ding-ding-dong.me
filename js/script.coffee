@@ -1,4 +1,12 @@
 
+#
+# TODO 
+#  - refactor, it's quite ugly !
+#  - make object removeable
+#  - share on social networks
+#  - clear canvas
+#
+
 accessories = [
   'hair1.png'
   'hair2.png'
@@ -13,6 +21,13 @@ class Photo
     $('#photo').show()
     @initCanvas file
     @initAccessories()
+    $('#share').show()
+    $('#download a').click (e) =>
+      e.preventDefault()
+      @canvas.deactivateAll()
+      window.open @canvas.toDataURL 'png'
+      
+
 
   initCanvas: (file) ->
     img = document.createElement 'img'
@@ -20,17 +35,20 @@ class Photo
       width  = (700 - 40)
       height = (width / img.width) * img.height
 
-      @canvas = oCanvas.create
-        canvas: "#photo-canvas"
-      @canvas.width  = width
-      @canvas.height = height
-      image  = @canvas.display.image
-        x: 0
-        y: 0
-        width: width
-        height: height
-        image: img
-      @canvas.addChild image
+      @canvas = new fabric.Element 'photo-canvas'
+      @canvas.setWidth  width
+      @canvas.setHeight height
+      image = new fabric.Image img
+      image.scaleToWidth width
+      image.scaleToHeight height
+      image.lockRotation  = true
+      image.lockScalingX  = true
+      image.lockScalingY  = true
+      image.lockMovementX = true
+      image.lockMovementY = true
+      @canvas.add image
+      @canvas.centerObjectH image
+      @canvas.centerObjectV image
     ), false
 
     reader = new FileReader()
@@ -46,7 +64,7 @@ class Photo
     accessoriesContainer.append list
 
     for src, index in accessories
-      li = $('<li><a href="#"><span>add</span><img src="img/accessories/'+src+'" width="70px" data-zindex="'+ ((parseInt(index) + 1) * 10)+'" /></a></li>')
+      li = $('<li><a href="#"><span>add</span><img src="img/accessories/'+src+'" width="70px" data-zindex="'+parseInt(index)+'" /></a></li>')
       list.append li
       li.click (e) =>
         e.preventDefault()
@@ -55,14 +73,11 @@ class Photo
         false
 
   addAccessory: (url, zIndex) ->
-    image  = @canvas.display.image
-      x: 0
-      y: 0
-      image: url
-    @canvas.addChild image
-    image.zIndex = parseInt zIndex
-    image.dragAndDrop()
-
+    fabric.Image.fromURL url, (image) =>
+      image.setCoords()
+      @canvas.insertAt image, zIndex + 1
+      @canvas.centerObjectH image
+      @canvas.centerObjectV image
 
 class FileHandler
   constructor: () ->

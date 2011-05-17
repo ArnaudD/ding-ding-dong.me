@@ -7,6 +7,12 @@
       $('#photo').show();
       this.initCanvas(file);
       this.initAccessories();
+      $('#share').show();
+      $('#download a').click(__bind(function(e) {
+        e.preventDefault();
+        this.canvas.deactivateAll();
+        return window.open(this.canvas.toDataURL('png'));
+      }, this));
     }
     Photo.prototype.initCanvas = function(file) {
       var img, reader;
@@ -15,19 +21,20 @@
         var height, image, width;
         width = 700 - 40;
         height = (width / img.width) * img.height;
-        this.canvas = oCanvas.create({
-          canvas: "#photo-canvas"
-        });
-        this.canvas.width = width;
-        this.canvas.height = height;
-        image = this.canvas.display.image({
-          x: 0,
-          y: 0,
-          width: width,
-          height: height,
-          image: img
-        });
-        return this.canvas.addChild(image);
+        this.canvas = new fabric.Element('photo-canvas');
+        this.canvas.setWidth(width);
+        this.canvas.setHeight(height);
+        image = new fabric.Image(img);
+        image.scaleToWidth(width);
+        image.scaleToHeight(height);
+        image.lockRotation = true;
+        image.lockScalingX = true;
+        image.lockScalingY = true;
+        image.lockMovementX = true;
+        image.lockMovementY = true;
+        this.canvas.add(image);
+        this.canvas.centerObjectH(image);
+        return this.canvas.centerObjectV(image);
       }, this)), false);
       reader = new FileReader();
       reader.onload = __bind(function(e) {
@@ -45,7 +52,7 @@
       _results = [];
       for (index = 0, _len = accessories.length; index < _len; index++) {
         src = accessories[index];
-        li = $('<li><a href="#"><span>add</span><img src="img/accessories/' + src + '" width="70px" data-zindex="' + ((parseInt(index) + 1) * 10) + '" /></a></li>');
+        li = $('<li><a href="#"><span>add</span><img src="img/accessories/' + src + '" width="70px" data-zindex="' + parseInt(index) + '" /></a></li>');
         list.append(li);
         _results.push(li.click(__bind(function(e) {
           var img;
@@ -58,15 +65,12 @@
       return _results;
     };
     Photo.prototype.addAccessory = function(url, zIndex) {
-      var image;
-      image = this.canvas.display.image({
-        x: 0,
-        y: 0,
-        image: url
-      });
-      this.canvas.addChild(image);
-      image.zIndex = parseInt(zIndex);
-      return image.dragAndDrop();
+      return fabric.Image.fromURL(url, __bind(function(image) {
+        image.setCoords();
+        this.canvas.insertAt(image, zIndex + 1);
+        this.canvas.centerObjectH(image);
+        return this.canvas.centerObjectV(image);
+      }, this));
     };
     return Photo;
   })();

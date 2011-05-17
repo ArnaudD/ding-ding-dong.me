@@ -235,11 +235,25 @@ h1 {
 	margin: 0 0 2em 0;
 }
 
+#share ,
 #photo ,
 #accessories {
 	display: none;
 	background-image: url(../img/paper_bg.jpg);
 }
+#share {
+	background: none;
+	text-align: center;
+}
+#share a {
+  color: #FF97FA;
+	text-decoration: none;
+	font-size: 1.3em;
+}
+#share a:hover {
+  color: white;
+}
+
 #accessories {
 	margin: 1em 0;
      -moz-box-shadow: inset 0px 5px 12px rgba(0,0,0,.3); /* FF3.5+ */
@@ -295,15 +309,16 @@ footer {
 	text-align: center;
 	padding-top: 2em;
 }
+footer a:active,
+footer a:visited,
 footer a {
   font-style: normal;
 	font-size: .8em;
-	color: rgba(255,255,255,.5);
 	text-decoration: none;
+	color: #97DEFF;
 }
 footer a:hover {
 	color: white;
-	color: rgba(255,255,255,.9);
 }
 
 
